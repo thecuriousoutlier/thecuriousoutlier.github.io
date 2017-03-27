@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>IL Education Visualization</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.css">
+		<link rel="stylesheet" href="style.css">
+		<meta name="description" content="Find out interesting facts and see how the state of Illinois spends money on its public school system.">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="style.css">
+		<link rel="shortcut icon" type="image/png" href="assets/favicon.png">
+		<meta property="og:title" content="Find out interesting facts and see how the state of Illinois spends money on its public school system.">
+		<meta property="og:image" content="http://bdadam.xyz/northerly/static/images/northerly-brand@2x.png">
+		<link rel="stylesheet" type="text/css" href="dist/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="dist/jssocials.css" />
+    <link rel="stylesheet" type="text/css" href="dist/jssocials-theme-plain.css" />
+	</head>
+	<body>
+		<div class="welcome">
+			<!-- welcome open icon -->
+			<div class="welcome-close">
+				<img style="width:25px;height:25px;" src="assets/close.svg">
+			</div>
+			<div class="content-wrapper">
+				<h3 class="welcome-heading">Welcome</h3>
+				<h3 class="welcome-subheading">Introduction:</h3>
+				<p class="welcome-content">
+					This map is a choropleth of data obtained from the Illinois State Board of Education (ISBE) for the year 2015-2016. It is merged with data from US Census on Illinois School districts for the year 2016.
+				</p>
+				<p class="welcome-content">
+					The project stemmed out of basic curiosity about Illinois School data. We simply aim to visualize data that is collected by ISBE and see how the data varies across geographic area.
+				</p>
+				<p class="welcome-content">
+					We hope this visualization starts a dialog on social media. Please use #IllinoisEducViz to follow the dialog.
+				</p>
+				<h3 class="welcome-subheading">How to Read the Viz:</h3>
+				<p class="welcome-content">
+					Click a district to see the value of that given district. If a Green and Purple pallete is used, then White indicates values closer to the average, with Green and Purple indicating more extreme values. If an Orange color pallet is used it indicates the intensity from low to high value.
+				</p>
+				<h3 class="welcome-subheading">Sources:</h3>
+				<p class="welcome-content">
+					The Illinois school data was sourced from Illinois State Board of Education data: <a href="https://www.isbe.net/Pages/Illinois-State-Report-Card-Data.aspx (data files for 2015-2016)" target="_blank">Link to Illinois school data</a>.
+				</p>
+				<p class="welcome-content">
+					The boundaries of the districts were sourced from the US Census data located at US Census. The US Census School District Codes: <a href="http://www2.census.gov/geo/docs/reference/codes/files/st17_il_schdist.txt" target="_blank">Link to district codes</a>. The TIGER/Line Shapefiles: <a href="https://www.census.gov/geo/maps-data/data/tiger-line.html" target="_blank">Link to shapefiles</a>.
+				</p>
+				<p class="welcome-content" style="margin-bottom:30px;">
+					The linking of the two data sources were matched based on best human judgedment, based on district names. <a href="data/Local_Agency_Codes_for_school_districts_based_on_2017_v7.0.csv" target="_blank">Link to excel files</a>.
+				</p>
+			</div>
+			<div class="content-break"></div>
+		</div>
+
+		<!-- menu icon -->
+		<div class="menu-icon">
+			<div class="container">
+				<div class="line-top"></div>
+				<div class="line-middle"></div>
+				<div class="line-bottom"></div>
+			</div>
+		</div>
+		<!-- menu content -->
+		<div id="root">
+			<div id="mapUI">
+				<div id='variables' class="filterDistrictNames">
+					<h1>IL Public School Visualization</h1>
+					<p class="top-title menu-subtitle">Explore Data:</p>
+					<!-- <select id="date-choice"></select> -->
+					<select id="category-choice"></select>
+					<select id="detail-choice"></select>
+					<p class="menu-subtitle">District Legend:</p>
+					<div id="legends"></div>
+					<p class="menu-subtitle">Toggle District Layers:</p>
+					<div id="toggle"></div>
+					<p class="menu-subtitle">Share This Project:</p>
+					<div id="share"></div>
+					<!-- <button id="delCookie">DELETE COOKIE</button> -->
+					<div class="welcome-open">
+						<img src="assets/help.svg" alt="help">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="map"></div>
+
+		<!-- preloader -->
+		<div id="preloader" aria-busy="true" aria-label="Loading, please wait." role="progressbar">
+		</div>
+		<!-- javascript -->
+		<!-- import js social icons plugin -->
+		<script src="dist/jquery.min.js"></script>
+		<script src="dist/jssocials.min.js"></script>
+		<script>
+		$("#share").jsSocials({
+			shares: ["email", "twitter", "facebook", "linkedin"],
+			url: "http://bdadam.xyz/eduviz-noreact/",
+			text: "Explore Data about the Illinois Public School System: View stats about certain school districts, or see how money and funding is handled in each one.",
+			showLabel: false,
+			showCount: false,
+			shareIn: "blank",
+			on: {
+				click: function(e) {},
+				mouseenter: function(e) {},
+				mouseleave: function(e) {}
+			}
+		});
+		</script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.2/leaflet.js"></script>
+		<script src="welcome.js"></script>
+		<script src="menu.js"></script>
+		<script src="dist/choropleth.js"></script>
+		<script src="map.js"></script>
+	</body>
+</html>
